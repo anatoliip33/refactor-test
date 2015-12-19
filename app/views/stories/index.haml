@@ -12,7 +12,7 @@
       %i.fa.fa-star
       .pull-right
         - if current_user.id == story.user_id
-          %a.btn.btn-sm.btn-warning
+          = link_to edit_story_path(story), class: 'btn btn-sm btn-warning' do
             %i.fa.fa-edit
           = link_to story_path(story), method: :delete, class: 'btn btn-sm btn-danger' do
             %i.fa.fa-remove

@@ -1,0 +1,14 @@
+- if @story.errors.any?
+  %ul
+    - @story.errors.full_messages.each do |msg|
+      %li
+        = msg
+= form_for @story, html: { class: 'form' } do |f|
+  .form-group
+    = f.text_field :title, placeholder: 'Title', class: 'form-control'
+  .form-group
+    = f.text_area :content,  placeholder: 'Content', rows: '6', class: 'form-control'
+  .form-group
+    = f.select(:category_id, Category.all.collect {|u| [u.title, u.id]}, {}, class: 'form-control')
+  .form-group.clearfix
+    = f.submit (@story.id? ? "Update!" : "Create!"), class: 'btn btn-primary'

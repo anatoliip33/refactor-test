@@ -3,10 +3,9 @@ class CreateStories < ActiveRecord::Migration
     create_table :stories do |t|
       t.string :title
       t.text :content
-      t.integer :category_id
-      t.index :category_id
-      t.integer :user_id
-      t.index :user_id
+
+      t.references :user, index: true
+      t.references :category, index: true
 
       t.timestamps null: false
     end
