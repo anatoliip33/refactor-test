@@ -1,6 +1,10 @@
 / TODO prettify with bootstrap
-= form_tag '/stories', method: 'post' do
-  = text_field_tag :title, nil, placeholder: 'Title'
-  = text_area_tag :content, nil,  placeholder: 'Content'
-  = select_tag :category, options_for_select(['Pets', 'Sport'])
-  = submit_tag 'Create!'
+= form_tag '/stories', method: 'post', class: 'form' do
+  .form-group
+    = text_field_tag :title, nil, placeholder: 'Title', class: 'form-control'
+  .form-group
+    = text_area_tag :content, nil,  placeholder: 'Content', rows: '6', class: 'form-control'
+  .form-group
+    = select_tag :category, options_for_select(['Pets', 'Sport']), class: 'form-control'
+  .form-group.clearfix
+    = submit_tag 'Create!', class: 'btn btn-primary'
