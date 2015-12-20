@@ -9,6 +9,7 @@ class StoriesController < ApplicationController
     else
       @stories = Story.all
     end
+    @rating = Rating.new(user: current_user, story: @story, rate: 5)
   end
 
   def new
@@ -64,7 +65,7 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      params.require(:story).permit(:title, :content, :category_id, :rating).merge(user: current_user)
+      params.require(:story).permit(:title, :content, :category_id, :rating, rating_attributes: [:rate, :user_id, :story_id]).merge(user: current_user)
     end
 
 end
