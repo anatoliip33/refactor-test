@@ -8,13 +8,13 @@
       by
       %a{ href: user_stories_path(story.user_id) }= User.find(story.user_id).email
       / TODO implement average story rating display
-      5
+      = story.rating.round
       %i.fa.fa-star
       .pull-right
         - if current_user.id == story.user_id
           = link_to edit_story_path(story), class: 'btn btn-sm btn-warning' do
             %i.fa.fa-edit
-          = link_to story_path(story), method: :delete, class: 'btn btn-sm btn-danger' do
+          = link_to story_path(story), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger' do
             %i.fa.fa-remove
 
     .panel-body.story-content{ style: 'zoom: 1.4;' }
@@ -25,9 +25,12 @@
         .col-xs-2
           = select_tag :lang, options_for_select(['original', 'ru', 'uk', 'fr', 'de']), class: 'form-control translate', data: { path: translate_story_path(story) }
         .col-xs-2.pull-right
-          Rate:
           / TODO implement rating system. Save on change and replace average rating with new value
-          %input.story-rating{ type: 'hidden' }
+          Rate:
+          = form_for Rating.new do |f|
+            = f.hidden_field :rate, class: 'story-rating'
+            = f.submit
+          / %input.story-rating{ type: 'hidden' }
 
 :coffee
   $('.story-rating').rating

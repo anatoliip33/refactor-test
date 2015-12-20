@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :stories do
     post :translate, on: :member
   end
+
+  resources :ratings
+
   resources :users do
     resources :stories
   end
