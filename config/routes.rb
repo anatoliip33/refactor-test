@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     post :translate, on: :member
   end
 
-  resources :ratings
+  resources :ratings, only: [:create, :update]
 
   resources :users do
     resources :stories

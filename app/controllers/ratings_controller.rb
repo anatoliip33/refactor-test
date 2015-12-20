@@ -6,6 +6,8 @@ class RatingsController < ApplicationController
     respond_to do |format|
       if @rating.save
         format.html { redirect_to root_path}
+      else
+        format.html { redirect_to root_path, alert: 'You have already rated' }
       end
     end
   end

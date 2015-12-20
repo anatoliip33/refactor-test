@@ -4,7 +4,7 @@ class Rating < ActiveRecord::Base
   after_save :average_score
 
   validates :user, :story, :rate, presence: true
-  validates :user, uniqueness: true
+  validates :user_id, uniqueness: { scope: :story_id }
 
   def average_score
     story.update({rating: Rating.where(story: story).average(:rate)})

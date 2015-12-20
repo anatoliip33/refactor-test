@@ -27,13 +27,9 @@
         .col-xs-2.pull-right
           / TODO implement rating system. Save on change and replace average rating with new value
           Rate:
-          = form_for story do |p|
-            = p.fields_for [:rating, story.ratings.build] do |f|
-              = f.hidden_field :rate, class: 'story-rating'
-              = f.hidden_field :user_id
-              = f.hidden_field :story_id
-              = f.submit
-          / %input.story-rating{ type: 'hidden' }
+          = form_for story.ratings.build do |f|
+            = f.hidden_field :rate, class: 'story-rating'
+            = f.hidden_field :story_id
 
 :coffee
   $('.story-rating').rating
