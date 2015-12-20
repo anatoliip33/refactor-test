@@ -1,4 +1,4 @@
-- @stories.each do |story|
+- @stories.order('rating desc').each do |story|
   .panel.panel-success
     .panel-heading
       = link_to category_stories_path(story.category_id) do
@@ -27,9 +27,10 @@
         .col-xs-2.pull-right
           / TODO implement rating system. Save on change and replace average rating with new value
           Rate:
-          = form_for story.ratings.build do |f|
+          = form_for story.ratings.build, html: { class: 'rate', id: 'rate_new' }do |f|
             = f.hidden_field :rate, class: 'story-rating'
             = f.hidden_field :story_id
+            = f.submit
 
 :coffee
   $('.story-rating').rating

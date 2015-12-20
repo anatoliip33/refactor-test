@@ -1,3 +1,3 @@
-$ ->
-  $('body').on 'change', 'input.story-rating', ->
-    $('form#new_rating').submit()
+# $ ->
+#   $('form.rate input').on 'change', ->
+#     $('#rate_new').submit()
